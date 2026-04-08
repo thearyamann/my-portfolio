@@ -39,6 +39,7 @@ export type Experience = {
   iconWrapClassName: string;
   iconClassName: string;
   Icon: IconComponent;
+  iconSrc?: string;
 };
 
 export type Education = {
@@ -100,40 +101,16 @@ export const projects: Project[] = [
 
 export const experiences: Experience[] = [
   {
-    organization: "TechCorp Inc.",
-    title: "Senior Full-Stack Developer",
-    description:
-      "Led microservices architecture overhaul, improving platform scalability and reducing deployment time by 40%. Mentored junior developers and established engineering best practices across the team.",
-    period: "Jan 2023 - Now",
+    organization: "NFURA PRIVATE LIMITED",
+    title: "Full Stack Developer Intern",
+    description: "Engineered scalable frontend architectures and backend integrations - REST APIs, secure authentication, shared component systems across 3+ client projects within a 12-member agile team delivering solutions for 5+ startups and businesses. Refactored component libraries and shared utility layers, achieving a 40% increase in code reusability and reducing cross-project feature delivery timelines significantly. Contributed to product delivery that drove ₹20 lakh in team revenue within 3 months of operations.",
+    period: "Jan 2025 - Aug 2025",
     location: "Remote",
-    badges: ["React", "Node.js", "AWS", "Docker"],
-    iconWrapClassName: "bg-[var(--exp-icon-blue)]",
+    badges: ["React", "Node.js", "REST APIs", "TypeScript"],
+    iconWrapClassName: "bg-white",
     iconClassName: "text-[var(--exp-icon-blue-fg)]",
     Icon: DesktopIcon,
-  },
-  {
-    organization: "ByteWave Studio",
-    title: "Frontend Developer",
-    description:
-      "Built and maintained React-based web apps for e-commerce clients, focusing on performance optimisation, accessibility standards, and component reusability across design systems.",
-    period: "Jun 2021 - Dec 2022",
-    location: "Bengaluru, IN",
-    badges: ["React", "TypeScript", "Tailwind"],
-    iconWrapClassName: "bg-[var(--exp-icon-slate)]",
-    iconClassName: "text-[var(--exp-icon-slate-fg)]",
-    Icon: CodeArrowsIcon,
-  },
-  {
-    organization: "NovaSpark Labs",
-    title: "Junior Developer",
-    description:
-      "Contributed to internal tooling and API integrations, streamlining client onboarding workflows and reducing manual engineering effort by automating repetitive data pipelines.",
-    period: "Aug 2019 - May 2021",
-    location: "Pune, IN",
-    badges: ["Python", "REST APIs", "PostgreSQL"],
-    iconWrapClassName: "bg-[var(--exp-icon-yellow)]",
-    iconClassName: "text-[var(--exp-icon-yellow-fg)]",
-    Icon: BoltIcon,
+    iconSrc: "/nfura_logo.jpeg",
   },
 ];
 

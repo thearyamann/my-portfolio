@@ -122,15 +122,15 @@ export function PortfolioPage() {
     >
       <div className="mx-auto flex w-full max-w-[680px] flex-col gap-[10px]">
         <TopBar isDark={isDark} onToggleTheme={() => setIsDark((prev) => !prev)} />
-        <HeroSection />
+        <HeroSection isDark={isDark} />
         <OverviewSection />
-        <ProjectsSection />
+        <ProjectsSection isDark={isDark} />
         <GitHubActivitySection isDark={isDark} />
-        <ExperienceSection />
+        <ExperienceSection isDark={isDark} />
         <EducationSection />
         <CertificationsSection />
         <ToolsSection />
-        <ContactSection />
+        <ContactSection isDark={isDark} />
       </div>
     </main>
   );

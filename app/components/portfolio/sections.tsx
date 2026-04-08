@@ -21,9 +21,9 @@ import {
 } from "./icons";
 
 const cardClassName =
-  "rounded-[14px] border border-[var(--border)] bg-[var(--surface)] p-[22px] transition-colors duration-300";
+  "rounded-[20px] border border-[var(--border)] bg-[var(--surface)] p-[22px] transition-colors duration-300";
 const innerClassName =
-  "mb-[9px] rounded-[9px] border border-[var(--border)] bg-[var(--surface-2)] p-4 transition-colors duration-300 last:mb-0";
+  "mb-[9px] rounded-[20px] border border-[var(--border)] bg-[var(--surface-2)] p-4 transition-colors duration-300 last:mb-0";
 
 function Card({ children }: { children: ReactNode }) {
   return <section className={cardClassName}>{children}</section>;
@@ -31,7 +31,7 @@ function Card({ children }: { children: ReactNode }) {
 
 function SectionTag({ children }: { children: ReactNode }) {
   return (
-    <div className="mb-[18px] inline-flex items-center rounded-[7px] border border-[var(--border-2)] bg-[var(--surface-2)] px-[13px] py-[5px] text-xs font-medium tracking-[0.3px] text-[var(--tag-text)] transition-colors duration-300">
+    <div className="mb-[18px] inline-flex items-center rounded-[12px] border border-[var(--border-2)] bg-[var(--surface-2)] px-[13px] py-[5px] text-xs font-medium tracking-[0.3px] text-[var(--tag-text)] transition-colors duration-300">
       {children}
     </div>
   );
@@ -39,7 +39,7 @@ function SectionTag({ children }: { children: ReactNode }) {
 
 function ArrowChip({ className = "text-[var(--arrow)]" }: { className?: string }) {
   return (
-    <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[var(--chip-bg)] transition-colors duration-300">
+    <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-2xl bg-[var(--chip-bg)] transition-colors duration-300">
       <ArrowRightIcon className={`h-[13px] w-[13px] ${className}`} />
     </div>
   );
@@ -54,9 +54,12 @@ function MetaItem({ icon, value }: { icon: ReactNode; value: string }) {
   );
 }
 
-function Badge({ label }: { label: string }) {
+function Badge({ label, isDark }: { label: string; isDark?: boolean }) {
+  const badgeStyle = isDark === false 
+    ? "bg-[#f5f5f5] border-[#e0e0e0] text-[#666]"
+    : "bg-[var(--badge-bg)] border-[var(--badge-border)] text-[var(--badge-text)]";
   return (
-    <span className="rounded-md border border-[var(--badge-border)] bg-[var(--badge-bg)] px-[10px] py-1 font-mono text-[11px] text-[var(--badge-text)] transition-colors duration-300">
+    <span className={`rounded-xl border px-[10px] py-1 font-mono text-[11px] transition-colors duration-300 ${badgeStyle}`}>
       {label}
     </span>
   );
@@ -68,20 +71,31 @@ type TopBarProps = {
 };
 
 export function TopBar({ isDark, onToggleTheme }: TopBarProps) {
+  const [currentTime, setCurrentTime] = useState("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      setCurrentTime(new Date().toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true }));
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <header className="flex items-center justify-between rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-[10px] transition-colors duration-300">
+    <header className="flex items-center justify-between rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-[10px] transition-colors duration-300">
       <div className="flex items-center gap-[7px] text-[13px] text-[var(--muted)] transition-colors duration-300">
         <LocationIcon className="h-3.5 w-3.5 text-[var(--icon-muted)]" />
-        <span>Bangalore, India</span>
+        <span>Noida, India</span>
       </div>
 
       <div className="flex items-center gap-[7px] text-[13px] text-[var(--muted)] transition-colors duration-300">
-        <span>Full-Stack Developer</span>
+        <span>{currentTime}</span>
         <button
           type="button"
           onClick={onToggleTheme}
           aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-          className="relative inline-flex h-7 w-7 items-center justify-center rounded-md border border-[var(--border-2)] bg-[var(--surface-2)] text-[var(--icon-muted)] transition-all duration-300 hover:border-[var(--border-hover)] hover:bg-[var(--surface-hover)]"
+          className="relative inline-flex h-7 w-7 items-center justify-center rounded-xl border border-[var(--border-2)] bg-[var(--surface-2)] text-[var(--icon-muted)] transition-all duration-300 hover:border-[var(--border-hover)] active:opacity-80"
         >
           <SunIcon
             className={`absolute h-3.5 w-3.5 transition-all duration-300 ${
@@ -99,12 +113,14 @@ export function TopBar({ isDark, onToggleTheme }: TopBarProps) {
   );
 }
 
-export function HeroSection() {
+export function HeroSection({ isDark }: { isDark: boolean }) {
+  const btnHover = isDark ? "hover:bg-[#1B1B1B]" : "hover:bg-[#FAFAFA]";
+  
   return (
     <Card>
       <div className="flex items-start gap-5 max-[500px]:flex-col">
-        <div className="flex h-[90px] w-[90px] shrink-0 items-center justify-center rounded-[14px] border border-[var(--avatar-border)] bg-[var(--avatar-bg)] font-sans text-[28px] font-semibold tracking-[-1px] text-[#5b8df6] transition-colors duration-300">
-          YN
+        <div className="flex h-[150px] w-[150px] shrink-0 items-center justify-center rounded-[20px] border-0 overflow-hidden bg-[var(--avatar-bg)] transition-colors duration-300">
+          <img src="/my-image.jpg" alt="Profile" className="h-full w-full object-cover" />
         </div>
 
         <div className="min-w-0 flex-1">
@@ -114,7 +130,7 @@ export function HeroSection() {
           </div>
 
           <h1 className="mb-[3px] text-[27px] font-semibold tracking-[-0.5px] text-[var(--heading)] transition-colors duration-300">
-            Your Name
+            Aryamann Chaudhary
           </h1>
           <p className="mb-4 text-[13px] text-[var(--muted)] transition-colors duration-300">
             Full-Stack Developer &middot; React &amp; Node.js
@@ -123,15 +139,17 @@ export function HeroSection() {
           <div className="flex flex-wrap gap-[9px]">
             <a
               href="#"
-              className="inline-flex items-center gap-[7px] rounded-[9px] border border-[var(--border-2)] bg-[var(--surface-2)] px-[18px] py-[9px] text-[13px] text-[var(--btn-text)] transition-colors duration-300 hover:border-[var(--border-hover)] hover:bg-[var(--surface-hover)]"
+              className={`inline-flex items-center gap-[7px] rounded-[20px] border border-[var(--border-2)] bg-[var(--surface-2)] px-[18px] py-[9px] text-[13px] text-[var(--btn-text)] transition-all duration-300 hover:border-[var(--border-hover)] ${btnHover} active:opacity-80`}
             >
               <DownloadIcon className="h-[15px] w-[15px] text-[var(--icon-soft)]" />
               <span>Download CV</span>
             </a>
 
             <a
-              href="mailto:hello@yourname.dev"
-              className="inline-flex items-center gap-[7px] rounded-[9px] border border-[var(--border-2)] bg-[var(--surface-2)] px-[18px] py-[9px] text-[13px] text-[var(--btn-text)] transition-colors duration-300 hover:border-[var(--border-hover)] hover:bg-[var(--surface-hover)]"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=thearyamann15151@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`inline-flex items-center gap-[7px] rounded-[20px] border border-[var(--border-2)] bg-[var(--surface-2)] px-[18px] py-[9px] text-[13px] text-[var(--btn-text)] transition-all duration-300 hover:border-[var(--border-hover)] ${btnHover} active:opacity-80`}
             >
               <MailIcon className="h-[15px] w-[15px] text-[var(--icon-soft)]" />
               <span>Get in Touch</span>
@@ -146,16 +164,15 @@ export function HeroSection() {
 export function OverviewSection() {
   return (
     <Card>
-      <SectionTag>Overview</SectionTag>
+      <SectionTag>Things about me</SectionTag>
       <p className="text-[13.5px] leading-[1.8] text-[var(--muted)] transition-colors duration-300">
-        Full-Stack Developer with a strong foundation in building scalable web applications and clean,
-        maintainable systems. Experienced in taking products from early concept through production deployment,
-        combining technical rigour with a pragmatic, delivery-focused mindset.
+        Beyond the code and the commits, I find balance in the tactile and the thoughtful. Whether it&apos;s dissecting why a product feels right or spending time away from the screen at the gym, in a game, or just being present, my approach to everything is driven by curiosity and a desire to understand things at their core.
       </p>
       <p className="mt-3 text-[13.5px] leading-[1.8] text-[var(--muted)] transition-colors duration-300">
-        I enjoy working across the entire stack - designing robust REST APIs and backend services to crafting
-        performant, accessible user interfaces. I thrive in collaborative environments and love solving complex
-        engineering challenges with elegant, well-considered solutions.
+        I believe the best software is built by people who bring more than technical skill to the table. It&apos;s the intersection of depth and perspective, knowing when to go deep into a system and when to step back and see the whole picture that shapes products people actually want to use.
+      </p>
+      <p className="mt-3 text-[13.5px] leading-[1.8] text-[var(--muted)] transition-colors duration-300">
+        I care about design as much as architecture. About the experience as much as the logic behind it.
       </p>
     </Card>
   );
@@ -172,29 +189,27 @@ type ContributionDay = {
 };
 
 type ContributionsApiResponse = {
-  total?: Record<string, number>;
-  contributions?: ContributionDay[];
+  totalContributions?: number;
+  totalText?: string;
+  months?: string[];
+  days?: ContributionDay[];
 };
 
-type GridDay = {
-  date: string;
-  level: number;
-  count: number;
-  inYear: boolean;
-};
-
-const monthLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const defaultMonthLabels = ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar"];
 const darkScale = ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"];
 const lightScale = ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"];
 
-function toISODateUTC(date: Date) {
-  return date.toISOString().slice(0, 10);
-}
-
 export function GitHubActivitySection({ isDark }: GitHubActivitySectionProps) {
-  const year = 2026;
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
+
   const [days, setDays] = useState<ContributionDay[]>([]);
+  const [months, setMonths] = useState<string[]>(defaultMonthLabels);
   const [totalContributions, setTotalContributions] = useState(0);
+  const [totalText, setTotalText] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -206,19 +221,20 @@ export function GitHubActivitySection({ isDark }: GitHubActivitySectionProps) {
         setLoading(true);
         setError(null);
 
-        const response = await fetch(
-          `https://github-contributions-api.jogruber.de/v4/${githubUsername}?y=${year}`,
-          { signal: controller.signal },
-        );
+        const response = await fetch(`/api/github-contributions?username=${encodeURIComponent(githubUsername)}`, {
+          signal: controller.signal,
+        });
 
         if (!response.ok) {
           throw new Error("Failed to load GitHub contributions");
         }
 
         const data = (await response.json()) as ContributionsApiResponse;
-        const yearKey = String(year);
-        setDays(data.contributions ?? []);
-        setTotalContributions(Number(data.total?.[yearKey] ?? 0));
+        const nextDays = data.days ?? [];
+        setDays(nextDays);
+        setMonths(data.months && data.months.length > 0 ? data.months : defaultMonthLabels);
+        setTotalContributions(Number(data.totalContributions ?? 0));
+        setTotalText(data.totalText ?? "");
       } catch (err) {
         if (controller.signal.aborted) return;
         setError(err instanceof Error ? err.message : "Unknown error");
@@ -232,41 +248,42 @@ export function GitHubActivitySection({ isDark }: GitHubActivitySectionProps) {
     loadContributions();
 
     return () => controller.abort();
-  }, [year]);
+  }, []);
 
   const weeks = useMemo(() => {
-    if (days.length === 0) return [] as GridDay[][];
+    if (days.length === 0) return [] as ContributionDay[][];
 
-    const levelMap = new Map(days.map((day) => [day.date, day.level]));
-    const countMap = new Map(days.map((day) => [day.date, day.count]));
+    const orderedDays = [...days]
+      .filter((day) => day.date >= "2025-08-01")
+      .sort((a, b) => a.date.localeCompare(b.date));
 
-    const startOfYear = new Date(Date.UTC(year, 0, 1));
-    const endOfYear = new Date(Date.UTC(year, 11, 31));
-    const gridStart = new Date(startOfYear);
-    const gridEnd = new Date(endOfYear);
+    const lastContributingIndex = [...orderedDays].reverse().findIndex((day) => day.count > 0);
+    const trimmedDays = lastContributingIndex === -1 
+      ? orderedDays 
+      : orderedDays.slice(0, orderedDays.length - lastContributingIndex);
 
-    gridStart.setUTCDate(gridStart.getUTCDate() - gridStart.getUTCDay());
-    gridEnd.setUTCDate(gridEnd.getUTCDate() + (6 - gridEnd.getUTCDay()));
-
-    const allDays: GridDay[] = [];
-    for (let cursor = new Date(gridStart); cursor <= gridEnd; cursor.setUTCDate(cursor.getUTCDate() + 1)) {
-      const date = toISODateUTC(cursor);
-      const inYear = cursor >= startOfYear && cursor <= endOfYear;
-      allDays.push({
-        date,
-        level: inYear ? (levelMap.get(date) ?? 0) : 0,
-        count: inYear ? (countMap.get(date) ?? 0) : 0,
-        inYear,
-      });
-    }
-
-    const groupedWeeks: GridDay[][] = [];
-    for (let i = 0; i < allDays.length; i += 7) {
-      groupedWeeks.push(allDays.slice(i, i + 7));
+    const groupedWeeks: ContributionDay[][] = [];
+    for (let i = 0; i < trimmedDays.length; i += 7) {
+      groupedWeeks.push(trimmedDays.slice(i, i + 7));
     }
 
     return groupedWeeks;
-  }, [days, year]);
+  }, [days]);
+
+  const filteredMonths = useMemo(() => {
+    if (weeks.length === 0) return [];
+    const monthSet = new Set<string>();
+    weeks.forEach((week) => {
+      week.forEach((day) => {
+        if (day.date) {
+          const [year, month] = day.date.split("-");
+          const date = new Date(parseInt(year), parseInt(month) - 1);
+          monthSet.add(date.toLocaleDateString("en-US", { month: "short" }));
+        }
+      });
+    });
+    return Array.from(monthSet);
+  }, [weeks]);
 
   const palette = isDark ? darkScale : lightScale;
 
@@ -274,11 +291,11 @@ export function GitHubActivitySection({ isDark }: GitHubActivitySectionProps) {
     <Card>
       <SectionTag>GitHub Activity</SectionTag>
 
-      <div
-        className={`rounded-[10px] border p-4 transition-all duration-300 sm:p-6 ${
+        <div
+        className={`rounded-[16px] p-4 transition-all duration-300 sm:p-6 ${
           isDark
-            ? "border-[#1f2937] bg-[#000000]"
-            : "border-[var(--border)] bg-[var(--surface-2)]"
+            ? "bg-[#000000]"
+            : "bg-[var(--surface-2)]"
         }`}
       >
         <div className="mb-4 flex items-center justify-between gap-3">
@@ -300,40 +317,35 @@ export function GitHubActivitySection({ isDark }: GitHubActivitySectionProps) {
             @{githubUsername}
           </a>
         </div>
-        {loading ? (
-          <p className={`text-sm ${isDark ? "text-[#8b949e]" : "text-[var(--muted)]"}`}>
-            Loading 2026 contributions...
-          </p>
+        {!hydrated || loading ? (
+          <div className="h-[120px] animate-pulse rounded-xl bg-[var(--surface-2)]" />
         ) : error ? (
           <p className="text-sm text-[#ef4444]">Could not load contributions right now.</p>
         ) : (
           <div
-            className={`overflow-x-auto rounded-md border p-3 transition-colors duration-300 ${
-              isDark ? "border-[#21262d] bg-[#000000]" : "border-[var(--border)] bg-white"
+            suppressHydrationWarning
+            className={`overflow-x-auto rounded-xl p-3 transition-colors duration-300 ${
+              isDark ? "bg-[#000000]" : "bg-white"
             }`}
           >
             <div className="min-w-[760px]">
               <div className={`mb-3 flex justify-between text-xs ${isDark ? "text-[#8b949e]" : "text-[var(--muted-2)]"}`}>
-                {monthLabels.map((month) => (
-                  <span key={month}>{month}</span>
+                {filteredMonths.map((month, idx) => (
+                  <span key={`${month}-${idx}`}>{month}</span>
                 ))}
               </div>
 
-              <div className="flex gap-[3px]">
+              <div className="flex gap-[2px]">
                 {weeks.map((week, weekIndex) => (
-                  <div key={`week-${weekIndex}`} className="flex flex-col gap-[3px]">
+                  <div key={`week-${weekIndex}`} className="flex flex-col gap-[2px]">
                     {week.map((day) => (
                       <span
                         key={day.date}
-                        className="h-4 w-4 rounded-[3px]"
+                        className="h-3.5 w-3.5 rounded-[2px]"
                         style={{
-                          backgroundColor: day.inYear ? palette[day.level] : "transparent",
+                          backgroundColor: palette[Math.min(Math.max(day.level, 0), palette.length - 1)],
                         }}
-                        title={
-                          day.inYear
-                            ? `${day.count} contribution${day.count === 1 ? "" : "s"} on ${day.date}`
-                            : ""
-                        }
+                        title={`${day.count} contribution${day.count === 1 ? "" : "s"} on ${day.date}`}
                       />
                     ))}
                   </div>
@@ -342,7 +354,8 @@ export function GitHubActivitySection({ isDark }: GitHubActivitySectionProps) {
 
               <div className="mt-4 flex items-center justify-between">
                 <p className={`text-sm ${isDark ? "text-[#c9d1d9]" : "text-[var(--heading-2)]"}`}>
-                  {totalContributions} contribution{totalContributions === 1 ? "" : "s"} in {year}
+                  {totalText ||
+                    `${totalContributions} contribution${totalContributions === 1 ? "" : "s"} in the last year`}
                 </p>
 
                 <div className="flex items-center gap-2">
@@ -351,7 +364,7 @@ export function GitHubActivitySection({ isDark }: GitHubActivitySectionProps) {
                     {palette.map((color, index) => (
                       <span
                         key={`legend-${index}`}
-                        className="h-4 w-4 rounded-[3px]"
+                        className="h-3 w-3 rounded-[2px]"
                         style={{ backgroundColor: color }}
                       />
                     ))}
@@ -368,36 +381,171 @@ export function GitHubActivitySection({ isDark }: GitHubActivitySectionProps) {
   );
 }
 
-export function ProjectsSection() {
+export function ProjectsSection({ isDark }: { isDark: boolean }) {
+  const iconBg = isDark ? "bg-[#101c36]" : "bg-[#e8f0ff]";
+  const iconBg2 = isDark ? "bg-[#1a1000]" : "bg-[#fff3df]";
+  const iconBg3 = isDark ? "bg-[#0d2018]" : "bg-[#e8f9ee]";
+  const iconBg4 = isDark ? "bg-[#160c28]" : "bg-[#f1e9ff]";
+  const badgeBg = isDark ? "bg-[#1e2030] border-[#2a2e48] text-[#6b82c4]" : "bg-[#e8f0ff] border-[#c7d5f5] text-[#4a6db8]";
+  const badgeBg2 = isDark ? "bg-[#1a2818] border-[#2a4028] text-[#5ba06e]" : "bg-[#e8f9ee] border-[#b8e0c8] text-[#3d9460]";
+  const badgeBg3 = isDark ? "bg-[#241e08] border-[#3a3010] text-[#c49a30]" : "bg-[#fff3df] border-[#e8d4a0] text-[#a67c20]";
+  const techBg = isDark ? "bg-[#1a1a1e] border-[#2a2a30] text-[#666]" : "bg-[#f5f5f5] border-[#e0e0e0] text-[#666]";
+  const liveBtn = isDark ? "bg-[#0e1a30] border-[#1a2e50] hover:bg-[#122040] hover:border-[#2a4068]" : "bg-[#e8f0ff] border-[#c7d5f5] hover:bg-[#d8e8ff] hover:border-[#a8c0f0]";
+  const bulletLi = isDark ? "text-[var(--muted)]" : "text-[#666]";
+  const bulletDot = isDark ? "before:bg-[#888]" : "before:bg-[#333]";
+
   return (
     <Card>
       <SectionTag>Projects</SectionTag>
-      <div className="grid grid-cols-1 gap-[10px] min-[500px]:grid-cols-2">
-        {projects.map((project) => (
-          <article
-            key={project.name}
-            className="overflow-hidden rounded-[9px] border border-[var(--border)] bg-[var(--surface-2)] transition-colors duration-300 hover:border-[var(--border-2)]"
-          >
-            <div className={`flex h-[108px] items-center justify-center ${project.thumbClassName} transition-colors duration-300`}>
-              <project.Icon className="h-11 w-11" aria-hidden="true" />
-            </div>
-            <div className="flex items-center justify-between px-[14px] py-[13px]">
-              <div>
-                <h3 className="mb-[2px] text-sm font-medium text-[var(--heading-2)] transition-colors duration-300">
-                  {project.name}
-                </h3>
-                <p className="text-xs text-[var(--muted-2)] transition-colors duration-300">{project.category}</p>
+
+      {/* Project 1 */}
+      <div className="mb-[10px] rounded-[10px] border border-[var(--border)] bg-[var(--surface-2)] p-[18px] last:mb-0">
+        <div className="mb-[10px] flex items-start justify-between gap-3">
+          <div className="flex-1 min-w-0">
+            <div className="mb-[6px] flex flex-wrap items-center gap-2">
+              <div className={`flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[10px] ${iconBg}`}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b8df6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2"/>
+                  <line x1="8" y1="21" x2="16" y2="21"/>
+                  <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
               </div>
-              <ArrowChip />
+              <span className="text-sm font-semibold text-[var(--heading-2)]">Advance Control System — Industrial B2B Web Platform</span>
+              <span className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${badgeBg}`}>Freelance</span>
             </div>
-          </article>
-        ))}
+            <div className="mb-3 flex flex-wrap gap-[6px]">
+              {["Next.js", "Supabase", "PostgreSQL", "Node.js", "Nodemailer", "Vercel"].map((tech) => (
+                <span key={tech} className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${techBg}`}>{tech}</span>
+              ))}
+            </div>
+          </div>
+          <a href="#" className={`flex shrink-0 items-center gap-[5px] rounded-[7px] border px-[11px] py-[5px] text-[12px] font-medium text-[#5b8df6] transition-colors duration-200 ${liveBtn}`}>
+            LIVE
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#5b8df6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+        <ul className="flex flex-col gap-2">
+          {[
+            "Architected and deployed a production full-stack B2B platform for an industrial automation client — comprising a public-facing site, a password-protected admin dashboard, and a product catalogue with full CRUD, image upload, and live/draft status toggling powered by Supabase PostgreSQL.",
+            "Engineered a dual lead-capture pipeline — Nodemailer SMTP for structured quote and enquiry emails + WhatsApp deep-link routing delivering inbound sales leads in real time and measurably increasing client conversions post-launch.",
+            "Secured admin panel with cookie-based session auth, server-side password validation, and environment-scoped Supabase service-role keys isolating public and admin data access with zero-trust configuration deployed on Vercel."
+          ].map((text, i) => (
+            <li key={i} className={`relative pl-4 text-[13px] leading-[1.7] ${bulletLi} before:absolute before:left-0 before:top-[9px] before:h-[5px] before:w-[5px] before:rounded-full ${bulletDot}`}><span className="text-[var(--heading-2)] font-medium">{text.split("—")[0].trim()}</span>{text.includes("—") ? "—" + text.split("—")[1] : ""}</li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Project 2 */}
+      <div className="mb-[10px] rounded-[10px] border border-[var(--border)] bg-[var(--surface-2)] p-[18px] last:mb-0">
+        <div className="mb-[10px] flex items-start justify-between gap-3">
+          <div className="flex-1 min-w-0">
+            <div className="mb-[6px] flex flex-wrap items-center gap-2">
+              <div className={`flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[10px] ${iconBg2}`}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e8a23a" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="5"/>
+                  <line x1="12" y1="1" x2="12" y2="3"/>
+                  <line x1="12" y1="21" x2="12" y2="23"/>
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                  <line x1="1" y1="12" x2="3" y2="12"/>
+                  <line x1="21" y1="12" x2="23" y2="12"/>
+                </svg>
+              </div>
+              <span className="text-sm font-semibold text-[var(--heading-2)]">UVGuard — UV Index &amp; Skincare Tracking Mobile App</span>
+            </div>
+            <div className="mb-3 flex flex-wrap gap-[6px]">
+              {["Flutter", "Dart", "iOS & Android", "Workmanager", "home_widget", "Geolocator", "Weather API"].map((tech) => (
+                <span key={tech} className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${techBg}`}>{tech}</span>
+              ))}
+            </div>
+          </div>
+          <a href="#" className={`flex shrink-0 items-center gap-[5px] rounded-[7px] border px-[11px] py-[5px] text-[12px] font-medium text-[#5b8df6] transition-colors duration-200 ${liveBtn}`}>
+            LIVE
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#5b8df6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+        <ul className="flex flex-col gap-2">
+          {[
+            "Designed and built a cross-platform iOS & Android Flutter app delivering real-time UV index monitoring, Fitzpatrick skin-type profiling across 6 phototypes, SPF recommendations, and personalised sunscreen reapplication timers calibrated to AAD clinical guidelines.",
+            "Engineered a UVRiskEngine and SunscreenEngine to classify UV exposure levels and dynamically calculate burn time and sunscreen reapplication intervals based on skin type and environmental conditions.",
+            "Implemented background UV refresh with Workmanager, native iOS Home Screen Widget via home_widget, GPS geolocation, reverse geocoding, Weather API integration, and scheduled local push notifications."
+          ].map((text, i) => (
+            <li key={i} className={`relative pl-4 text-[13px] leading-[1.7] ${bulletLi} before:absolute before:left-0 before:top-[9px] before:h-[5px] before:w-[5px] before:rounded-full ${bulletDot}`}><span className="text-[var(--heading-2)] font-medium">{text.split("—")[0].trim()}</span>{text.includes("—") ? "—" + text.split("—")[1] : ""}</li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Project 3 */}
+      <div className="mb-[10px] rounded-[10px] border border-[var(--border)] bg-[var(--surface-2)] p-[18px] last:mb-0">
+        <div className="mb-[10px] flex items-start justify-between gap-3">
+          <div className="flex-1 min-w-0">
+            <div className="mb-[6px] flex flex-wrap items-center gap-2">
+              <div className={`flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[10px] ${iconBg3}`}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3bba75" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="2" y1="12" x2="22" y2="12"/>
+                  <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+                </svg>
+              </div>
+              <span className="text-sm font-semibold text-[var(--heading-2)]">GUIDO — Travel Platform</span>
+              <span className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${badgeBg2}`}>UP Government Granted</span>
+            </div>
+            <div className="mb-3 flex flex-wrap gap-[6px]">
+              {["React.js", "Node.js", "Express.js", "REST APIs", "JWT Auth"].map((tech) => (
+                <span key={tech} className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${techBg}`}>{tech}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+        <ul className="flex flex-col gap-2">
+          {[
+            "Engineered the backend authentication system (JWT + role-based access control) and built frontend UI components for a travel platform serving 1,000+ daily active users; the project secured competitive funding from the Uttar Pradesh Government.",
+            "Integrated RESTful API endpoints for itinerary generation and user management, implementing session handling and secure auth flows across user-facing and admin surfaces."
+          ].map((text, i) => (
+            <li key={i} className={`relative pl-4 text-[13px] leading-[1.7] ${bulletLi} before:absolute before:left-0 before:top-[9px] before:h-[5px] before:w-[5px] before:rounded-full ${bulletDot}`}><span className="text-[var(--heading-2)] font-medium">{text.split("—")[0].trim()}</span>{text.includes("—") ? "—" + text.split("—")[1] : ""}</li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Project 4 */}
+      <div className="mb-[10px] rounded-[10px] border border-[var(--border)] bg-[var(--surface-2)] p-[18px] last:mb-0">
+        <div className="mb-[10px] flex items-start justify-between gap-3">
+          <div className="flex-1 min-w-0">
+            <div className="mb-[6px] flex flex-wrap items-center gap-2">
+              <div className={`flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[10px] ${iconBg4}`}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9b72f8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <span className="text-sm font-semibold text-[var(--heading-2)]">Vesly — Smart Hydration System</span>
+              <span className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${badgeBg3}`}>SIH 2023 National Finalist</span>
+            </div>
+            <div className="mb-3 flex flex-wrap gap-[6px]">
+              {["Flutter", "IoT", "UV-C Purification", "Sensor Integration", "Mobile Analytics"].map((tech) => (
+                <span key={tech} className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${techBg}`}>{tech}</span>
+              ))}
+            </div>
+          </div>
+          <a href="#" className={`flex shrink-0 items-center gap-[5px] rounded-[7px] border px-[11px] py-[5px] text-[12px] font-medium text-[#5b8df6] transition-colors duration-200 ${liveBtn}`}>
+            LIVE
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#5b8df6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+        <ul className="flex flex-col gap-2">
+          {[
+            "Developed an IoT-based smart water bottle with UV-C purification and real-time hydration tracking sensors, transmitting usage telemetry to a mobile application via a hardware-software interface layer.",
+            "Built the companion Flutter mobile app featuring a hydration analytics dashboard, personalised reminder scheduling, and user health insights.",
+            "Selected as a national finalist at Smart India Hackathon 2023 — ranked among the top teams from over 50,000+ submissions across 44,000 teams nationwide."
+          ].map((text, i) => (
+            <li key={i} className={`relative pl-4 text-[13px] leading-[1.7] ${bulletLi} before:absolute before:left-0 before:top-[9px] before:h-[5px] before:w-[5px] before:rounded-full ${bulletDot}`}><span className="text-[var(--heading-2)] font-medium">{text.split("—")[0].trim()}</span>{text.includes("—") ? "—" + text.split("—")[1] : ""}</li>
+          ))}
+        </ul>
       </div>
     </Card>
   );
 }
 
-export function ExperienceSection() {
+export function ExperienceSection({ isDark }: { isDark: boolean }) {
   return (
     <Card>
       <SectionTag>Experience</SectionTag>
@@ -406,9 +554,13 @@ export function ExperienceSection() {
         <div key={experience.title} className={innerClassName}>
           <div className="flex gap-[14px]">
             <div
-              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] ${experience.iconWrapClassName} transition-colors duration-300`}
+              className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-[16px] overflow-hidden ${experience.iconWrapClassName} transition-colors duration-300`}
             >
-              <experience.Icon className={`h-5 w-5 ${experience.iconClassName}`} aria-hidden="true" />
+              {"iconSrc" in experience ? (
+                <img src={experience.iconSrc} alt="" className="h-full w-full object-contain scale-125" />
+              ) : (
+                <experience.Icon className={`h-5 w-5 ${experience.iconClassName}`} aria-hidden="true" />
+              )}
             </div>
 
             <div className="min-w-0 flex-1">
@@ -418,9 +570,14 @@ export function ExperienceSection() {
               <h3 className="mb-[7px] text-[15px] font-medium text-[var(--heading-2)] transition-colors duration-300">
                 {experience.title}
               </h3>
-              <p className="mb-[11px] text-[13px] leading-[1.65] text-[var(--body)] transition-colors duration-300">
-                {experience.description}
-              </p>
+
+              <ul className="mb-[11px] flex flex-col gap-2">
+                {experience.description.split(".").filter(s => s.trim()).map((point, i) => (
+                  <li key={i} className="relative pl-4 text-[13px] leading-[1.65] text-[var(--body)] transition-colors duration-300 before:absolute before:left-0 before:top-[8px] before:h-[5px] before:w-[5px] before:rounded-full before:bg-[#333]">
+                    {point.trim()}.
+                  </li>
+                ))}
+              </ul>
 
               <div className="flex flex-wrap gap-x-4 gap-y-1">
                 <MetaItem
@@ -435,7 +592,7 @@ export function ExperienceSection() {
 
               <div className="mt-[10px] flex flex-wrap gap-[7px]">
                 {experience.badges.map((badge) => (
-                  <Badge key={badge} label={badge} />
+                  <Badge key={badge} label={badge} isDark={isDark} />
                 ))}
               </div>
             </div>
@@ -485,7 +642,7 @@ export function CertificationsSection() {
       {certifications.map((certification) => (
         <article
           key={certification.name}
-          className="mb-[9px] flex items-center justify-between rounded-[9px] border border-[var(--border)] bg-[var(--surface-2)] px-4 py-[14px] transition-colors duration-300 last:mb-0"
+          className="mb-[9px] flex items-center justify-between rounded-[20px] border border-[var(--border)] bg-[var(--surface-2)] px-4 py-[14px] transition-colors duration-300 last:mb-0"
         >
           <div>
             <h3 className="mb-1 text-sm font-medium text-[var(--heading-2)] transition-colors duration-300">
@@ -512,9 +669,9 @@ export function ToolsSection() {
         {tools.map((tool) => (
           <article
             key={tool.name}
-            className="flex items-center gap-3 rounded-[9px] border border-[var(--border)] bg-[var(--surface-2)] px-[14px] py-[13px] transition-colors duration-300 hover:border-[var(--border-2)]"
+            className="flex items-center gap-3 rounded-[20px] border border-[var(--border)] bg-[var(--surface-2)] px-[14px] py-[13px] transition-colors duration-300 hover:border-[var(--border-2)]"
           >
-            <div className={`flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[9px] ${tool.iconWrapClassName} transition-colors duration-300`}>
+            <div className={`flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[20px] ${tool.iconWrapClassName} transition-colors duration-300`}>
               <tool.Icon className="h-[22px] w-[22px]" aria-hidden="true" />
             </div>
             <div>
@@ -530,7 +687,9 @@ export function ToolsSection() {
   );
 }
 
-export function ContactSection() {
+export function ContactSection({ isDark }: { isDark: boolean }) {
+  const contactHover = isDark ? "hover:bg-[#1B1B1B]" : "hover:bg-[#FAFAFA]";
+  
   return (
     <Card>
       <SectionTag>Contact</SectionTag>
@@ -539,7 +698,7 @@ export function ContactSection() {
         <a
           key={contact.label}
           href={contact.href}
-          className="mb-[9px] flex items-center justify-between rounded-[9px] border border-[var(--border)] bg-[var(--surface-2)] px-4 py-[14px] text-inherit no-underline transition-colors duration-300 hover:border-[var(--border-2)] last:mb-0"
+          className={`mb-[9px] flex items-center justify-between rounded-[20px] border border-[var(--border)] bg-[var(--surface-2)] px-4 py-[14px] text-inherit no-underline transition-all duration-300 hover:border-[var(--border-2)] ${contactHover} active:opacity-80 last:mb-0`}
           target={contact.external ? "_blank" : undefined}
           rel={contact.external ? "noreferrer" : undefined}
         >
