@@ -10,7 +10,7 @@ import {
   HeroSection,
   OverviewSection,
   ProjectsSection,
-  ToolsSection,
+  SkillsSection,
   TopBar,
 } from "./sections";
 
@@ -128,8 +128,8 @@ export function PortfolioPage() {
         <GitHubActivitySection isDark={isDark} />
         <ExperienceSection isDark={isDark} />
         <EducationSection />
-        <CertificationsSection />
-        <ToolsSection />
+        <SkillsSection isDark={isDark} />
+         <CertificationsSection />
         <ContactSection isDark={isDark} />
       </div>
     </main>

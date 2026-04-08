@@ -15,8 +15,11 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Your Name - Full-Stack Developer",
+  title: "Aryamann Chaudhary - Full-Stack Developer",
   description: "Portfolio of a full-stack developer specializing in React and Node.js.",
+  icons: {
+    icon: "/falcon.png",
+  },
 };
 
 export default function RootLayout({

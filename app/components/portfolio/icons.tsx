@@ -244,3 +244,111 @@ export function DockerIcon(props: IconProps) {
     </svg>
   );
 }
+
+export function JavaScriptIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 44 44" fill="none" {...props}>
+      <rect x="6" y="6" width="32" height="32" rx="5" fill="#f7df1e" />
+      <text x="8" y="30" fontSize="16" fontWeight="bold" fill="#000" fontFamily="sans-serif">JS</text>
+    </svg>
+  );
+}
+
+export function DartIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 44 44" fill="none" {...props}>
+      <rect x="6" y="6" width="32" height="32" rx="5" fill="#0175c2" />
+      <text x="10" y="28" fontSize="12" fontWeight="bold" fill="#fff" fontFamily="sans-serif">Dart</text>
+    </svg>
+  );
+}
+
+export function PythonIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 44 44" fill="none" {...props}>
+      <circle cx="22" cy="22" r="18" stroke="#3776ab" strokeWidth="2" />
+      <text x="12" y="28" fontSize="14" fontWeight="bold" fill="#3776ab" fontFamily="sans-serif">Py</text>
+    </svg>
+  );
+}
+
+export function JavaIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 44 44" fill="none" {...props}>
+      <rect x="6" y="6" width="32" height="32" rx="5" fill="#ed8b00" />
+      <text x="9" y="28" fontSize="13" fontWeight="bold" fill="#fff" fontFamily="sans-serif">Java</text>
+    </svg>
+  );
+}
+
+export function NextJsIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 44 44" fill="none" {...props}>
+      <rect x="4" y="4" width="36" height="36" rx="8" fill="#000" />
+      <text x="8" y="28" fontSize="11" fontWeight="bold" fill="#fff" fontFamily="sans-serif">Next</text>
+    </svg>
+  );
+}
+
+export function TailwindIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 44 44" fill="none" {...props}>
+      <rect x="4" y="4" width="36" height="36" rx="5" fill="#06b6d4" />
+      <text x="6" y="28" fontSize="10" fontWeight="bold" fill="#fff" fontFamily="sans-serif">Tail</text>
+    </svg>
+  );
+}
+
+export function ExpressIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 44 44" fill="none" {...props}>
+      <rect x="6" y="6" width="32" height="32" rx="5" fill="#000" />
+      <text x="8" y="28" fontSize="10" fontWeight="bold" fill="#fff" fontFamily="sans-serif">Express</text>
+    </svg>
+  );
+}
+
+export function FlutterIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 44 44" fill="none" {...props}>
+      <circle cx="22" cy="22" r="18" fill="#02569b" />
+      <text x="10" y="28" fontSize="12" fontWeight="bold" fill="#fff" fontFamily="sans-serif">Flut</text>
+    </svg>
+  );
+}
+
+export function SupabaseIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 44 44" fill="none" {...props}>
+      <rect x="6" y="6" width="32" height="32" rx="5" fill="#3ecf8e" />
+      <text x="8" y="28" fontSize="10" fontWeight="bold" fill="#000" fontFamily="sans-serif">Supa</text>
+    </svg>
+  );
+}
+
+export function MongoDBIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 44 44" fill="none" {...props}>
+      <rect x="6" y="6" width="32" height="32" rx="5" fill="#47a248" />
+      <text x="8" y="28" fontSize="10" fontWeight="bold" fill="#fff" fontFamily="sans-serif">Mongo</text>
+    </svg>
+  );
+}
+
+export function GitIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 44 44" fill="none" {...props}>
+      <rect x="6" y="6" width="32" height="32" rx="5" fill="#f05032" />
+      <text x="12" y="28" fontSize="12" fontWeight="bold" fill="#fff" fontFamily="sans-serif">Git</text>
+    </svg>
+  );
+}
+
+export function FigmaIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 44 44" fill="none" {...props}>
+      <rect x="6" y="6" width="32" height="32" rx="5" fill="#f24e1e" />
+      <text x="10" y="28" fontSize="10" fontWeight="bold" fill="#fff" fontFamily="sans-serif">Figma</text>
+    </svg>
+  );
+}

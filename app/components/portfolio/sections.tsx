@@ -623,10 +623,12 @@ export function EducationSection() {
               icon={<CalendarIcon className="h-3 w-3 text-[var(--muted-2)]" aria-hidden="true" />}
               value={item.period}
             />
-            <MetaItem
-              icon={<LocationIcon className="h-3 w-3 text-[var(--muted-2)]" aria-hidden="true" />}
-              value={item.location}
-            />
+            {item.location && (
+              <MetaItem
+                icon={<LocationIcon className="h-3 w-3 text-[var(--muted-2)]" aria-hidden="true" />}
+                value={item.location}
+              />
+            )}
           </div>
         </div>
       ))}
@@ -637,50 +639,80 @@ export function EducationSection() {
 export function CertificationsSection() {
   return (
     <Card>
-      <SectionTag>Certifications</SectionTag>
-
-      {certifications.map((certification) => (
-        <article
-          key={certification.name}
-          className="mb-[9px] flex items-center justify-between rounded-[20px] border border-[var(--border)] bg-[var(--surface-2)] px-4 py-[14px] transition-colors duration-300 last:mb-0"
-        >
-          <div>
-            <h3 className="mb-1 text-sm font-medium text-[var(--heading-2)] transition-colors duration-300">
-              {certification.name}
-            </h3>
-            <div className="flex items-center gap-[5px] text-xs text-[var(--muted-2)] transition-colors duration-300">
-              <CalendarIcon className="h-3 w-3" aria-hidden="true" />
-              <span>{certification.date}</span>
-            </div>
-          </div>
-          <ArrowChip />
-        </article>
-      ))}
+      <SectionTag>My Fav Quote</SectionTag>
+      <blockquote className="text-[13.5px] leading-[1.8] text-[var(--muted)] transition-colors duration-300 italic">
+        "The world is full of people suffering from the effects of their own unlived life. They become bitter, critical, or rigid, not because the world is cruel to them, but because they have betrayed their own inner possibilities. The artist who never makes art becomes cynical about those who do. The lover who never risks loving mocks romance. The thinker who never commits to a philosophy sneers at belief itself. And yet, all of them suffer, because deep down they know: the life they mock is the life they were meant to live."
+      </blockquote>
     </Card>
   );
 }
 
-export function ToolsSection() {
+export function SkillsSection({ isDark }: { isDark: boolean }) {
+  const techBadge = isDark ? "bg-[#1a1a1e] border-[#2a2a30] text-[#888]" : "bg-[#f5f5f5] border-[#e0e0e0] text-[#666]";
+  
+  const skills = [
+    {
+      category: "Language",
+      items: ["JavaScript (ES6+)", "Dart", "Java", "Python", "SQL"],
+      icon: "JS",
+      bgColor: "bg-[#f7df1e]",
+      textColor: "text-[#000]"
+    },
+    {
+      category: "Frontend",
+      items: ["Next.js", "React.js", "Tailwind CSS", "Shadcn/UI", "Framer Motion", "HTML5", "CSS3"],
+      icon: "FE",
+      bgColor: "bg-[#5b8df6]",
+      textColor: "text-[#fff]"
+    },
+    {
+      category: "Backend",
+      items: ["Node.js", "Express.js", "REST API Design", "JWT Auth", "Cookie-based Auth", "Nodemailer (SMTP)", "Server Actions"],
+      icon: "BE",
+      bgColor: "bg-[#3bba75]",
+      textColor: "text-[#fff]"
+    },
+    {
+      category: "Mobile",
+      items: ["Flutter", "Dart", "iOS & Android", "Workmanager", "Push Notifications", "Home Screen Widgets"],
+      icon: "Mob",
+      bgColor: "bg-[#0175c2]",
+      textColor: "text-[#fff]"
+    },
+    {
+      category: "Databases",
+      items: ["Supabase (PostgreSQL)", "MongoDB", "Redis", "Real-time CRUD", "Row Level Security", "Admin SDK"],
+      icon: "DB",
+      bgColor: "bg-[#e8a23a]",
+      textColor: "text-[#fff]"
+    },
+    {
+      category: "Tools",
+      items: ["Git", "GitHub", "Postman", "Vercel", "Railway", "DSA", "OOP", "Agile/Scrum", "Figma"],
+      icon: "Tool",
+      bgColor: "bg-[#9b72f8]",
+      textColor: "text-[#fff]"
+    },
+  ];
+
   return (
     <Card>
-      <SectionTag>Tools</SectionTag>
-
-      <div className="grid grid-cols-1 gap-[9px] min-[500px]:grid-cols-2">
-        {tools.map((tool) => (
-          <article
-            key={tool.name}
-            className="flex items-center gap-3 rounded-[20px] border border-[var(--border)] bg-[var(--surface-2)] px-[14px] py-[13px] transition-colors duration-300 hover:border-[var(--border-2)]"
-          >
-            <div className={`flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[20px] ${tool.iconWrapClassName} transition-colors duration-300`}>
-              <tool.Icon className="h-[22px] w-[22px]" aria-hidden="true" />
+      <SectionTag>Skills</SectionTag>
+      <div className="grid grid-cols-1 gap-[10px]">
+        {skills.map((skill) => (
+          <div key={skill.category} className="rounded-[10px] border border-[var(--border)] bg-[var(--surface-2)] p-[16px]">
+            <div className="mb-[12px] flex items-center gap-3">
+              <div className={`flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-[10px] ${skill.bgColor}`}>
+                <span className={`text-[13px] font-bold ${skill.textColor}`}>{skill.icon}</span>
+              </div>
+              <span className="text-base font-semibold text-[var(--heading-2)]">{skill.category}</span>
             </div>
-            <div>
-              <h3 className="mb-[2px] text-sm font-medium text-[var(--heading-2)] transition-colors duration-300">
-                {tool.name}
-              </h3>
-              <p className="text-xs text-[var(--muted-2)] transition-colors duration-300">{tool.type}</p>
+            <div className="flex flex-wrap gap-[8px]">
+              {skill.items.map((item) => (
+                <span key={item} className={`rounded-[6px] border px-[12px] py-[4px] font-mono text-[13px] ${techBadge}`}>{item}</span>
+              ))}
             </div>
-          </article>
+          </div>
         ))}
       </div>
     </Card>
@@ -714,7 +746,7 @@ export function ContactSection({ isDark }: { isDark: boolean }) {
       ))}
 
       <footer className="mt-4 text-center text-xs text-[var(--footer)] transition-colors duration-300">
-        2026 &copy; Your Name &middot; Crafted with care
+        2026 &copy; Aryamann Chaudhary &middot; Crafted with care
       </footer>
     </Card>
   );

@@ -47,7 +47,7 @@ export type Education = {
   degree: string;
   description: string;
   period: string;
-  location: string;
+  location?: string;
 };
 
 export type Certification = {
@@ -116,20 +116,11 @@ export const experiences: Experience[] = [
 
 export const educationItems: Education[] = [
   {
-    organization: "Indian Institute of Technology",
-    degree: "B.Tech / Computer Science & Engineering",
+    organization: "Dr. A. P. J. Abdul Kalam Technical University, Lucknow",
+    degree: "B.Tech / Computer Science & Engineering (AIML)",
     description:
       "Developed strong foundations in algorithms, data structures, systems design, and software engineering principles through rigorous coursework and real-world projects.",
-    period: "Aug 2015 - Jun 2019",
-    location: "Mumbai, IN",
-  },
-  {
-    organization: "Delhi Public School",
-    degree: "Senior Secondary Education (Science)",
-    description:
-      "Completed higher secondary with a science and mathematics focus, laying the analytical foundation for an engineering career.",
-    period: "Apr 2013 - Mar 2015",
-    location: "New Delhi, IN",
+    period: "Nov 2021 - Jun 2025",
   },
 ];
 
@@ -186,36 +177,30 @@ export const tools: Tool[] = [
 export const contacts: Contact[] = [
   {
     label: "E-mail",
-    value: "hello@yourname.dev",
-    href: "mailto:hello@yourname.dev",
+    value: "thearyamann15151@gmail.com",
+    href: "https://mail.google.com/mail/?view=cm&fs=1&to=thearyamann15151@gmail.com",
     Icon: MailIcon,
+    external: true,
   },
   {
     label: "GitHub",
-    value: "/yourname",
-    href: "https://github.com/yourname",
+    value: "@thearyamann",
+    href: "https://github.com/thearyamann",
     Icon: GithubIcon,
     external: true,
   },
   {
     label: "LinkedIn",
-    value: "/in/yourname",
-    href: "https://linkedin.com/in/yourname",
+    value: "/in/aryamannchaudhary",
+    href: "https://www.linkedin.com/in/aryamannchaudhary/",
     Icon: LinkedinIcon,
     external: true,
   },
   {
     label: "X / Twitter",
-    value: "@yourhandle",
-    href: "https://twitter.com/yourhandle",
+    value: "@Aryamann_",
+    href: "https://x.com/Aryamann_",
     Icon: TwitterIcon,
-    external: true,
-  },
-  {
-    label: "Portfolio",
-    value: "yourname.dev",
-    href: "https://yourname.dev",
-    Icon: GlobeIcon,
     external: true,
   },
 ];
