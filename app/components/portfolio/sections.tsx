@@ -119,12 +119,12 @@ export function HeroSection({ isDark }: { isDark: boolean }) {
   return (
     <Card>
       <div className="flex items-start gap-5 max-sm:flex-col max-sm:items-center max-sm:text-center">
-        <div className="flex h-[150px] w-[150px] shrink-0 items-center justify-center rounded-[20px] border-0 overflow-hidden bg-[var(--avatar-bg)] transition-colors duration-300 max-sm:h-[120px] max-sm:w-[120px] max-sm:mx-auto">
+        <div className="flex h-[150px] w-[150px] shrink-0 items-center justify-center rounded-[20px] border-0 overflow-hidden bg-[var(--avatar-bg)] transition-colors duration-300 max-sm:h-[160px] max-sm:w-[160px] max-sm:mx-auto">
           <img src="/my-image.jpg" alt="Profile" className="h-full w-full object-cover" />
         </div>
 
         <div className="min-w-0 flex-1">
-          <div className="mb-2 flex items-center gap-[7px] text-xs text-[var(--muted)] transition-colors duration-300">
+          <div className="mb-2 flex items-center gap-[7px] text-xs text-[var(--muted)] transition-colors duration-300 max-sm:justify-center max-sm:mb-3">
             <span className="h-[7px] w-[7px] rounded-full bg-[var(--online)]" aria-hidden="true" />
             <span>Available for Work</span>
           </div>
