@@ -32,7 +32,7 @@ export default function RootLayout({
       lang="en"
       className={`${sora.variable} ${jetBrainsMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full font-sans">{children}</body>
+      <body suppressHydrationWarning className="min-h-full font-sans">{children}</body>
     </html>
   );
 }

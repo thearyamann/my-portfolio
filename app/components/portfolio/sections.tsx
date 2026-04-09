@@ -129,10 +129,10 @@ export function HeroSection({ isDark }: { isDark: boolean }) {
             <span>Available for Work</span>
           </div>
 
-          <h1 className="mb-[3px] text-[27px] font-semibold tracking-[-0.5px] text-[var(--heading)] transition-colors duration-300">
+          <h1 className="mb-[3px] text-[27px] font-semibold tracking-[-0.5px] text-[var(--heading)] transition-colors duration-300 break-words max-sm:text-[22px] max-sm:leading-tight">
             Aryamann Chaudhary
           </h1>
-          <p className="mb-4 text-[13px] text-[var(--muted)] transition-colors duration-300">
+          <p className="mb-4 text-[13px] text-[var(--muted)] transition-colors duration-300 max-sm:text-[12px]">
             Full-Stack Developer &middot; React &amp; Node.js
           </p>
 
@@ -328,7 +328,7 @@ export function GitHubActivitySection({ isDark }: GitHubActivitySectionProps) {
               isDark ? "bg-[#000000]" : "bg-white"
             }`}
           >
-            <div className="min-w-[760px]">
+            <div className="min-w-[340px] md:min-w-[760px]">
               <div className={`mb-3 flex justify-between text-xs ${isDark ? "text-[#8b949e]" : "text-[var(--muted-2)]"}`}>
                 {filteredMonths.map((month, idx) => (
                   <span key={`${month}-${idx}`}>{month}</span>
@@ -352,14 +352,14 @@ export function GitHubActivitySection({ isDark }: GitHubActivitySectionProps) {
                 ))}
               </div>
 
-              <div className="mt-4 flex items-center justify-between">
+              <div className="mt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
                 <p className={`text-sm ${isDark ? "text-[#c9d1d9]" : "text-[var(--heading-2)]"}`}>
                   {totalText ||
                     `${totalContributions} contribution${totalContributions === 1 ? "" : "s"} in the last year`}
                 </p>
 
-                <div className="flex items-center gap-2">
-                  <span className={`text-sm ${isDark ? "text-[#c9d1d9]" : "text-[var(--heading-2)]"}`}>Less</span>
+                <div className="flex items-center gap-2 shrink-0">
+                  <span className={`text-xs ${isDark ? "text-[#c9d1d9]" : "text-[var(--heading-2)]"}`}>Less</span>
                   <div className="flex gap-1">
                     {palette.map((color, index) => (
                       <span
@@ -369,7 +369,7 @@ export function GitHubActivitySection({ isDark }: GitHubActivitySectionProps) {
                       />
                     ))}
                   </div>
-                  <span className={`text-sm ${isDark ? "text-[#c9d1d9]" : "text-[var(--heading-2)]"}`}>More</span>
+                  <span className={`text-xs ${isDark ? "text-[#c9d1d9]" : "text-[var(--heading-2)]"}`}>More</span>
                 </div>
               </div>
             </div>
@@ -415,10 +415,10 @@ export function ProjectsSection({ isDark }: { isDark: boolean }) {
                 <span className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${badgeBg}`}>Freelance</span>
               </div>
               <div className="mb-3 flex flex-wrap gap-[6px]">
-                {["Next.js", "Supabase", "PostgreSQL", "Node.js", "Nodemailer", "Vercel"].map((tech) => (
-                  <span key={tech} className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${techBg}`}>{tech}</span>
-                ))}
-              </div>
+                  {["Next.js", "Supabase", "PostgreSQL", "Node.js", "Nodemailer", "Vercel"].map((tech) => (
+                    <span key={tech} className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${techBg}`}>{tech}</span>
+                  ))}
+                </div>
             </div>
             <a href="#" className={`flex shrink-0 items-center gap-[5px] rounded-[7px] border px-[11px] py-[5px] text-[12px] font-medium text-[#5b8df6] transition-colors duration-200 ${liveBtn}`}>
               LIVE
@@ -457,10 +457,10 @@ export function ProjectsSection({ isDark }: { isDark: boolean }) {
                 <span className="text-sm font-semibold text-[var(--heading-2)] max-sm:text-[13px]">UVGuard — UV Index &amp; Skincare Tracking Mobile App</span>
               </div>
               <div className="mb-3 flex flex-wrap gap-[6px]">
-                {["Flutter", "Dart", "iOS & Android", "Workmanager", "home_widget", "Geolocator", "Weather API"].map((tech) => (
-                  <span key={tech} className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${techBg}`}>{tech}</span>
-                ))}
-              </div>
+                  {["Flutter", "Dart", "iOS & Android", "Workmanager", "home_widget", "Geolocator", "Weather API"].map((tech) => (
+                    <span key={tech} className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${techBg}`}>{tech}</span>
+                  ))}
+                </div>
             </div>
             <a href="#" className={`flex shrink-0 items-center gap-[5px] rounded-[7px] border px-[11px] py-[5px] text-[12px] font-medium text-[#5b8df6] transition-colors duration-200 ${liveBtn}`}>
               LIVE
@@ -496,10 +496,10 @@ export function ProjectsSection({ isDark }: { isDark: boolean }) {
                 <span className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${badgeBg2}`}>UP Government Granted</span>
               </div>
               <div className="mb-3 flex flex-wrap gap-[6px]">
-                {["React.js", "Node.js", "Express.js", "REST APIs", "JWT Auth"].map((tech) => (
-                  <span key={tech} className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${techBg}`}>{tech}</span>
-                ))}
-              </div>
+                  {["React.js", "Node.js", "Express.js", "REST APIs", "JWT Auth"].map((tech) => (
+                    <span key={tech} className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${techBg}`}>{tech}</span>
+                  ))}
+                </div>
             </div>
           </div>
         </div>
@@ -528,10 +528,10 @@ export function ProjectsSection({ isDark }: { isDark: boolean }) {
                 <span className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${badgeBg3}`}>SIH 2023 National Finalist</span>
               </div>
               <div className="mb-3 flex flex-wrap gap-[6px]">
-                {["Flutter", "IoT", "UV-C Purification", "Sensor Integration", "Mobile Analytics"].map((tech) => (
-                  <span key={tech} className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${techBg}`}>{tech}</span>
-                ))}
-              </div>
+                  {["Flutter", "IoT", "UV-C Purification", "Sensor Integration", "Mobile Analytics"].map((tech) => (
+                    <span key={tech} className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${techBg}`}>{tech}</span>
+                  ))}
+                </div>
             </div>
             <a href="#" className={`flex shrink-0 items-center gap-[5px] rounded-[7px] border px-[11px] py-[5px] text-[12px] font-medium text-[#5b8df6] transition-colors duration-200 ${liveBtn}`}>
               LIVE
@@ -599,10 +599,10 @@ export function ExperienceSection({ isDark }: { isDark: boolean }) {
               </div>
 
               <div className="mt-[10px] flex flex-wrap gap-[7px]">
-                {experience.badges.map((badge) => (
-                  <Badge key={badge} label={badge} isDark={isDark} />
-                ))}
-              </div>
+                  {experience.badges.map((badge) => (
+                    <Badge key={badge} label={badge} isDark={isDark} />
+                  ))}
+                </div>
             </div>
           </div>
         </div>
@@ -741,10 +741,10 @@ export function SkillsSection({ isDark }: { isDark: boolean }) {
               <div className="flex-1 min-w-0">
                 <div className="mb-2 text-[12px] font-medium tracking-wide text-[var(--muted-2)]">{skill.category}</div>
                 <div className="flex flex-wrap gap-[6px]">
-                  {skill.items.map((item) => (
-                    <span key={item} className={`rounded-[6px] border px-[10px] py-1 font-mono text-[11px] ${techBadge}`}>{item}</span>
-                  ))}
-                </div>
+                    {skill.items.map((item) => (
+                      <span key={item} className={`rounded-[6px] border px-[10px] py-1 font-mono text-[11px] ${techBadge}`}>{item}</span>
+                    ))}
+                  </div>
               </div>
             </div>
           </div>
