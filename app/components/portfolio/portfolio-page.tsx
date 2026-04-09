@@ -115,12 +115,12 @@ export function PortfolioPage() {
     return (isDark ? darkTheme : lightTheme) as CSSProperties;
   }, [isDark]);
 
-  return (
-    <main
-      style={themeVars}
-      className="min-h-screen bg-[var(--bg)] px-4 py-5 text-[var(--text)] transition-colors duration-500 sm:px-6 sm:pb-12"
-    >
-      <div className="mx-auto flex w-full max-w-[680px] flex-col gap-[10px]">
+    return (
+      <main
+        style={themeVars}
+        className="min-h-screen bg-[var(--bg)] px-4 py-5 text-[var(--text)] transition-colors duration-500 sm:px-6 sm:pb-12 max-sm:px-3 max-sm:py-4"
+      >
+        <div className="mx-auto flex w-full max-w-[680px] flex-col gap-[10px] max-sm:gap-[8px]">
         <TopBar isDark={isDark} onToggleTheme={() => setIsDark((prev) => !prev)} />
         <HeroSection isDark={isDark} />
         <OverviewSection />

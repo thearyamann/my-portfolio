@@ -21,9 +21,9 @@ import {
 } from "./icons";
 
 const cardClassName =
-  "rounded-[20px] border border-[var(--border)] bg-[var(--surface)] p-[22px] transition-colors duration-300";
+  "rounded-[20px] border border-[var(--border)] bg-[var(--surface)] p-[22px] transition-colors duration-300 max-sm:p-4 max-sm:rounded-[16px]";
 const innerClassName =
-  "mb-[9px] rounded-[20px] border border-[var(--border)] bg-[var(--surface-2)] p-4 transition-colors duration-300 last:mb-0";
+  "mb-[9px] rounded-[20px] border border-[var(--border)] bg-[var(--surface-2)] p-4 transition-colors duration-300 last:mb-0 max-sm:p-3";
 
 function Card({ children }: { children: ReactNode }) {
   return <section className={cardClassName}>{children}</section>;
@@ -39,8 +39,8 @@ function SectionTag({ children }: { children: ReactNode }) {
 
 function ArrowChip({ className = "text-[var(--arrow)]" }: { className?: string }) {
   return (
-    <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-2xl bg-[var(--chip-bg)] transition-colors duration-300">
-      <ArrowRightIcon className={`h-[13px] w-[13px] ${className}`} />
+    <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-2xl bg-[var(--chip-bg)] transition-all duration-300 group-hover:scale-110 group-hover:bg-[var(--border)]">
+      <ArrowRightIcon className={`h-[13px] w-[13px] transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-80 ${className}`} />
     </div>
   );
 }
@@ -83,14 +83,14 @@ export function TopBar({ isDark, onToggleTheme }: TopBarProps) {
   }, []);
 
   return (
-    <header className="flex items-center justify-between rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-[10px] transition-colors duration-300">
+    <header className="flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-[10px] transition-colors duration-300 max-sm:gap-3">
       <div className="flex items-center gap-[7px] text-[13px] text-[var(--muted)] transition-colors duration-300">
         <LocationIcon className="h-3.5 w-3.5 text-[var(--icon-muted)]" />
         <span>Noida, India</span>
       </div>
 
       <div className="flex items-center gap-[7px] text-[13px] text-[var(--muted)] transition-colors duration-300">
-        <span>{currentTime}</span>
+        <span className="max-sm:text-[11px]">{currentTime}</span>
         <button
           type="button"
           onClick={onToggleTheme}
@@ -118,8 +118,8 @@ export function HeroSection({ isDark }: { isDark: boolean }) {
   
   return (
     <Card>
-      <div className="flex items-start gap-5 max-[500px]:flex-col">
-        <div className="flex h-[150px] w-[150px] shrink-0 items-center justify-center rounded-[20px] border-0 overflow-hidden bg-[var(--avatar-bg)] transition-colors duration-300">
+      <div className="flex items-start gap-5 max-sm:flex-col max-sm:items-center max-sm:text-center">
+        <div className="flex h-[150px] w-[150px] shrink-0 items-center justify-center rounded-[20px] border-0 overflow-hidden bg-[var(--avatar-bg)] transition-colors duration-300 max-sm:h-[120px] max-sm:w-[120px] max-sm:mx-auto">
           <img src="/my-image.jpg" alt="Profile" className="h-full w-full object-cover" />
         </div>
 
@@ -292,7 +292,7 @@ export function GitHubActivitySection({ isDark }: GitHubActivitySectionProps) {
       <SectionTag>GitHub Activity</SectionTag>
 
         <div
-        className={`rounded-[16px] p-4 transition-all duration-300 sm:p-6 ${
+        className={`rounded-[16px] p-4 transition-all duration-300 max-sm:p-3 ${
           isDark
             ? "bg-[#000000]"
             : "bg-[var(--surface-2)]"
@@ -399,30 +399,32 @@ export function ProjectsSection({ isDark }: { isDark: boolean }) {
       <SectionTag>Projects</SectionTag>
 
       {/* Project 1 */}
-      <div className="mb-[10px] rounded-[10px] border border-[var(--border)] bg-[var(--surface-2)] p-[18px] last:mb-0">
-        <div className="mb-[10px] flex items-start justify-between gap-3">
-          <div className="flex-1 min-w-0">
-            <div className="mb-[6px] flex flex-wrap items-center gap-2">
-              <div className={`flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[10px] ${iconBg}`}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b8df6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2" y="3" width="20" height="14" rx="2"/>
-                  <line x1="8" y1="21" x2="16" y2="21"/>
-                  <line x1="12" y1="17" x2="12" y2="21"/>
-                </svg>
+      <div className="mb-[10px] rounded-[10px] border border-[var(--border)] bg-[var(--surface-2)] p-4 last:mb-0 max-sm:p-3">
+        <div className="mb-[10px] flex flex-col gap-3 max-sm:items-start">
+          <div className="flex items-start justify-between gap-3 flex-wrap">
+            <div className="flex-1 min-w-0">
+              <div className="mb-[6px] flex flex-wrap items-center gap-2">
+                <div className={`flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[10px] ${iconBg}`}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b8df6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2"/>
+                    <line x1="8" y1="21" x2="16" y2="21"/>
+                    <line x1="12" y1="17" x2="12" y2="21"/>
+                  </svg>
+                </div>
+                <span className="text-sm font-semibold text-[var(--heading-2)] max-sm:text-[13px]">Advance Control System — Industrial B2B Web Platform</span>
+                <span className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${badgeBg}`}>Freelance</span>
               </div>
-              <span className="text-sm font-semibold text-[var(--heading-2)]">Advance Control System — Industrial B2B Web Platform</span>
-              <span className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${badgeBg}`}>Freelance</span>
+              <div className="mb-3 flex flex-wrap gap-[6px]">
+                {["Next.js", "Supabase", "PostgreSQL", "Node.js", "Nodemailer", "Vercel"].map((tech) => (
+                  <span key={tech} className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${techBg}`}>{tech}</span>
+                ))}
+              </div>
             </div>
-            <div className="mb-3 flex flex-wrap gap-[6px]">
-              {["Next.js", "Supabase", "PostgreSQL", "Node.js", "Nodemailer", "Vercel"].map((tech) => (
-                <span key={tech} className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${techBg}`}>{tech}</span>
-              ))}
-            </div>
+            <a href="#" className={`flex shrink-0 items-center gap-[5px] rounded-[7px] border px-[11px] py-[5px] text-[12px] font-medium text-[#5b8df6] transition-colors duration-200 ${liveBtn}`}>
+              LIVE
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#5b8df6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
           </div>
-          <a href="#" className={`flex shrink-0 items-center gap-[5px] rounded-[7px] border px-[11px] py-[5px] text-[12px] font-medium text-[#5b8df6] transition-colors duration-200 ${liveBtn}`}>
-            LIVE
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#5b8df6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </a>
         </div>
         <ul className="flex flex-col gap-2">
           {[
@@ -436,33 +438,35 @@ export function ProjectsSection({ isDark }: { isDark: boolean }) {
       </div>
 
       {/* Project 2 */}
-      <div className="mb-[10px] rounded-[10px] border border-[var(--border)] bg-[var(--surface-2)] p-[18px] last:mb-0">
-        <div className="mb-[10px] flex items-start justify-between gap-3">
-          <div className="flex-1 min-w-0">
-            <div className="mb-[6px] flex flex-wrap items-center gap-2">
-              <div className={`flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[10px] ${iconBg2}`}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e8a23a" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="5"/>
-                  <line x1="12" y1="1" x2="12" y2="3"/>
-                  <line x1="12" y1="21" x2="12" y2="23"/>
-                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                  <line x1="1" y1="12" x2="3" y2="12"/>
-                  <line x1="21" y1="12" x2="23" y2="12"/>
-                </svg>
+      <div className="mb-[10px] rounded-[10px] border border-[var(--border)] bg-[var(--surface-2)] p-4 last:mb-0 max-sm:p-3">
+        <div className="mb-[10px] flex flex-col gap-3 max-sm:items-start">
+          <div className="flex items-start justify-between gap-3 flex-wrap">
+            <div className="flex-1 min-w-0">
+              <div className="mb-[6px] flex flex-wrap items-center gap-2">
+                <div className={`flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[10px] ${iconBg2}`}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e8a23a" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                  </svg>
+                </div>
+                <span className="text-sm font-semibold text-[var(--heading-2)] max-sm:text-[13px]">UVGuard — UV Index &amp; Skincare Tracking Mobile App</span>
               </div>
-              <span className="text-sm font-semibold text-[var(--heading-2)]">UVGuard — UV Index &amp; Skincare Tracking Mobile App</span>
+              <div className="mb-3 flex flex-wrap gap-[6px]">
+                {["Flutter", "Dart", "iOS & Android", "Workmanager", "home_widget", "Geolocator", "Weather API"].map((tech) => (
+                  <span key={tech} className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${techBg}`}>{tech}</span>
+                ))}
+              </div>
             </div>
-            <div className="mb-3 flex flex-wrap gap-[6px]">
-              {["Flutter", "Dart", "iOS & Android", "Workmanager", "home_widget", "Geolocator", "Weather API"].map((tech) => (
-                <span key={tech} className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${techBg}`}>{tech}</span>
-              ))}
-            </div>
+            <a href="#" className={`flex shrink-0 items-center gap-[5px] rounded-[7px] border px-[11px] py-[5px] text-[12px] font-medium text-[#5b8df6] transition-colors duration-200 ${liveBtn}`}>
+              LIVE
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#5b8df6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
           </div>
-          <a href="#" className={`flex shrink-0 items-center gap-[5px] rounded-[7px] border px-[11px] py-[5px] text-[12px] font-medium text-[#5b8df6] transition-colors duration-200 ${liveBtn}`}>
-            LIVE
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#5b8df6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </a>
         </div>
         <ul className="flex flex-col gap-2">
           {[
@@ -476,24 +480,26 @@ export function ProjectsSection({ isDark }: { isDark: boolean }) {
       </div>
 
       {/* Project 3 */}
-      <div className="mb-[10px] rounded-[10px] border border-[var(--border)] bg-[var(--surface-2)] p-[18px] last:mb-0">
-        <div className="mb-[10px] flex items-start justify-between gap-3">
-          <div className="flex-1 min-w-0">
-            <div className="mb-[6px] flex flex-wrap items-center gap-2">
-              <div className={`flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[10px] ${iconBg3}`}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3bba75" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="10"/>
-                  <line x1="2" y1="12" x2="22" y2="12"/>
-                  <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
-                </svg>
+      <div className="mb-[10px] rounded-[10px] border border-[var(--border)] bg-[var(--surface-2)] p-4 last:mb-0 max-sm:p-3">
+        <div className="mb-[10px] flex flex-col gap-3 max-sm:items-start">
+          <div className="flex items-start justify-between gap-3 flex-wrap">
+            <div className="flex-1 min-w-0">
+              <div className="mb-[6px] flex flex-wrap items-center gap-2">
+                <div className={`flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[10px] ${iconBg3}`}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3bba75" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/>
+                    <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+                  </svg>
+                </div>
+                <span className="text-sm font-semibold text-[var(--heading-2)] max-sm:text-[13px]">GUIDO — Travel Platform</span>
+                <span className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${badgeBg2}`}>UP Government Granted</span>
               </div>
-              <span className="text-sm font-semibold text-[var(--heading-2)]">GUIDO — Travel Platform</span>
-              <span className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${badgeBg2}`}>UP Government Granted</span>
-            </div>
-            <div className="mb-3 flex flex-wrap gap-[6px]">
-              {["React.js", "Node.js", "Express.js", "REST APIs", "JWT Auth"].map((tech) => (
-                <span key={tech} className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${techBg}`}>{tech}</span>
-              ))}
+              <div className="mb-3 flex flex-wrap gap-[6px]">
+                {["React.js", "Node.js", "Express.js", "REST APIs", "JWT Auth"].map((tech) => (
+                  <span key={tech} className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${techBg}`}>{tech}</span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -508,28 +514,30 @@ export function ProjectsSection({ isDark }: { isDark: boolean }) {
       </div>
 
       {/* Project 4 */}
-      <div className="mb-[10px] rounded-[10px] border border-[var(--border)] bg-[var(--surface-2)] p-[18px] last:mb-0">
-        <div className="mb-[10px] flex items-start justify-between gap-3">
-          <div className="flex-1 min-w-0">
-            <div className="mb-[6px] flex flex-wrap items-center gap-2">
-              <div className={`flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[10px] ${iconBg4}`}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9b72f8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                </svg>
+      <div className="mb-[10px] rounded-[10px] border border-[var(--border)] bg-[var(--surface-2)] p-4 last:mb-0 max-sm:p-3">
+        <div className="mb-[10px] flex flex-col gap-3 max-sm:items-start">
+          <div className="flex items-start justify-between gap-3 flex-wrap">
+            <div className="flex-1 min-w-0">
+              <div className="mb-[6px] flex flex-wrap items-center gap-2">
+                <div className={`flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[10px] ${iconBg4}`}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9b72f8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                </div>
+                <span className="text-sm font-semibold text-[var(--heading-2)] max-sm:text-[13px]">Vesly — Smart Hydration System</span>
+                <span className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${badgeBg3}`}>SIH 2023 National Finalist</span>
               </div>
-              <span className="text-sm font-semibold text-[var(--heading-2)]">Vesly — Smart Hydration System</span>
-              <span className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${badgeBg3}`}>SIH 2023 National Finalist</span>
+              <div className="mb-3 flex flex-wrap gap-[6px]">
+                {["Flutter", "IoT", "UV-C Purification", "Sensor Integration", "Mobile Analytics"].map((tech) => (
+                  <span key={tech} className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${techBg}`}>{tech}</span>
+                ))}
+              </div>
             </div>
-            <div className="mb-3 flex flex-wrap gap-[6px]">
-              {["Flutter", "IoT", "UV-C Purification", "Sensor Integration", "Mobile Analytics"].map((tech) => (
-                <span key={tech} className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${techBg}`}>{tech}</span>
-              ))}
-            </div>
+            <a href="#" className={`flex shrink-0 items-center gap-[5px] rounded-[7px] border px-[11px] py-[5px] text-[12px] font-medium text-[#5b8df6] transition-colors duration-200 ${liveBtn}`}>
+              LIVE
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#5b8df6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
           </div>
-          <a href="#" className={`flex shrink-0 items-center gap-[5px] rounded-[7px] border px-[11px] py-[5px] text-[12px] font-medium text-[#5b8df6] transition-colors duration-200 ${liveBtn}`}>
-            LIVE
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#5b8df6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </a>
         </div>
         <ul className="flex flex-col gap-2">
           {[
@@ -551,10 +559,10 @@ export function ExperienceSection({ isDark }: { isDark: boolean }) {
       <SectionTag>Experience</SectionTag>
 
       {experiences.map((experience) => (
-        <div key={experience.title} className={innerClassName}>
-          <div className="flex gap-[14px]">
+        <div key={experience.title} className={`${innerClassName} max-sm:p-3`}>
+          <div className="flex gap-[14px] max-sm:gap-3">
             <div
-              className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-[16px] overflow-hidden ${experience.iconWrapClassName} transition-colors duration-300`}
+              className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-[16px] overflow-hidden ${experience.iconWrapClassName} transition-colors duration-300 max-sm:h-10 max-sm:w-10`}
             >
               {"iconSrc" in experience ? (
                 <img src={experience.iconSrc} alt="" className="h-full w-full object-contain scale-125" />
@@ -564,16 +572,16 @@ export function ExperienceSection({ isDark }: { isDark: boolean }) {
             </div>
 
             <div className="min-w-0 flex-1">
-              <p className="mb-[2px] text-xs tracking-[0.2px] text-[var(--muted-2)] transition-colors duration-300">
+              <p className="mb-[2px] text-xs tracking-[0.2px] text-[var(--muted-2)] transition-colors duration-300 max-sm:text-[11px]">
                 {experience.organization}
               </p>
-              <h3 className="mb-[7px] text-[15px] font-medium text-[var(--heading-2)] transition-colors duration-300">
+              <h3 className="mb-[7px] text-[15px] font-medium text-[var(--heading-2)] transition-colors duration-300 max-sm:text-[13px]">
                 {experience.title}
               </h3>
 
               <ul className="mb-[11px] flex flex-col gap-2">
                 {experience.description.split(".").filter(s => s.trim()).map((point, i) => (
-                  <li key={i} className="relative pl-4 text-[13px] leading-[1.65] text-[var(--body)] transition-colors duration-300 before:absolute before:left-0 before:top-[8px] before:h-[5px] before:w-[5px] before:rounded-full before:bg-[#333]">
+                  <li key={i} className="relative pl-4 text-[13px] leading-[1.65] text-[var(--body)] transition-colors duration-300 before:absolute before:left-0 before:top-[8px] before:h-[5px] before:w-[5px] before:rounded-full before:bg-[#333] max-sm:text-[12px] max-sm:leading-5">
                     {point.trim()}.
                   </li>
                 ))}
@@ -609,12 +617,12 @@ export function EducationSection() {
       <SectionTag>Education</SectionTag>
 
       {educationItems.map((item) => (
-        <div key={item.degree} className={innerClassName}>
-          <p className="mb-[3px] text-xs text-[var(--muted-2)] transition-colors duration-300">{item.organization}</p>
-          <h3 className="mb-[7px] text-[15px] font-medium text-[var(--heading-2)] transition-colors duration-300">
+        <div key={item.degree} className={`${innerClassName} max-sm:p-3`}>
+          <p className="mb-[3px] text-xs text-[var(--muted-2)] transition-colors duration-300 max-sm:text-[11px]">{item.organization}</p>
+          <h3 className="mb-[7px] text-[15px] font-medium text-[var(--heading-2)] transition-colors duration-300 max-sm:text-[13px]">
             {item.degree}
           </h3>
-          <p className="mb-[11px] text-[13px] leading-[1.65] text-[var(--body)] transition-colors duration-300">
+          <p className="mb-[11px] text-[13px] leading-[1.65] text-[var(--body)] transition-colors duration-300 max-sm:text-[12px] max-sm:leading-5">
             {item.description}
           </p>
 
@@ -654,63 +662,90 @@ export function SkillsSection({ isDark }: { isDark: boolean }) {
     {
       category: "Language",
       items: ["JavaScript (ES6+)", "Dart", "Java", "Python", "SQL"],
-      icon: "JS",
-      bgColor: "bg-[#f7df1e]",
-      textColor: "text-[#000]"
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={isDark ? "#5b8df6" : "#3b6fd4"} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+        </svg>
+      ),
+      bgColor: isDark ? "bg-[#0e1a30]" : "bg-[#e8f0ff]",
     },
     {
       category: "Frontend",
       items: ["Next.js", "React.js", "Tailwind CSS", "Shadcn/UI", "Framer Motion", "HTML5", "CSS3"],
-      icon: "FE",
-      bgColor: "bg-[#5b8df6]",
-      textColor: "text-[#fff]"
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={isDark ? "#4ecdc4" : "#2a9d94"} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <path d="M3 9h18M9 21V9"/>
+        </svg>
+      ),
+      bgColor: isDark ? "bg-[#0f1e20]" : "bg-[#e0f5f4]",
     },
     {
       category: "Backend",
       items: ["Node.js", "Express.js", "REST API Design", "JWT Auth", "Cookie-based Auth", "Nodemailer (SMTP)", "Server Actions"],
-      icon: "BE",
-      bgColor: "bg-[#3bba75]",
-      textColor: "text-[#fff]"
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={isDark ? "#b07ef8" : "#8b5cc4"} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <ellipse cx="12" cy="5" rx="9" ry="3"/>
+          <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+          <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+        </svg>
+      ),
+      bgColor: isDark ? "bg-[#1a1020]" : "bg-[#f0e8ff]",
     },
     {
       category: "Mobile",
       items: ["Flutter", "Dart", "iOS & Android", "Workmanager", "Push Notifications", "Home Screen Widgets"],
-      icon: "Mob",
-      bgColor: "bg-[#0175c2]",
-      textColor: "text-[#fff]"
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={isDark ? "#e8a23a" : "#c48a20"} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="5" y="2" width="14" height="20" rx="2"/>
+          <line x1="12" y1="18" x2="12.01" y2="18"/>
+        </svg>
+      ),
+      bgColor: isDark ? "bg-[#1e1500]" : "bg-[#fff3df]",
     },
     {
       category: "Databases",
       items: ["Supabase (PostgreSQL)", "MongoDB", "Redis", "Real-time CRUD", "Row Level Security", "Admin SDK"],
-      icon: "DB",
-      bgColor: "bg-[#e8a23a]",
-      textColor: "text-[#fff]"
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={isDark ? "#3bba75" : "#2a9048"} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <ellipse cx="12" cy="5" rx="9" ry="3"/>
+          <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+          <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+          <line x1="12" y1="8" x2="12" y2="22"/>
+        </svg>
+      ),
+      bgColor: isDark ? "bg-[#0d2018]" : "bg-[#e8f9ee]",
     },
     {
       category: "Tools",
       items: ["Git", "GitHub", "Postman", "Vercel", "Railway", "DSA", "OOP", "Agile/Scrum", "Figma"],
-      icon: "Tool",
-      bgColor: "bg-[#9b72f8]",
-      textColor: "text-[#fff]"
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={isDark ? "#888" : "#555"} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
+        </svg>
+      ),
+      bgColor: isDark ? "bg-[#1a1a1e]" : "bg-[#f5f5f5]",
     },
   ];
 
   return (
     <Card>
       <SectionTag>Skills</SectionTag>
-      <div className="grid grid-cols-1 gap-[10px]">
+      <div className="grid grid-cols-1 gap-[9px]">
         {skills.map((skill) => (
-          <div key={skill.category} className="rounded-[10px] border border-[var(--border)] bg-[var(--surface-2)] p-[16px]">
-            <div className="mb-[12px] flex items-center gap-3">
-              <div className={`flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-[10px] ${skill.bgColor}`}>
-                <span className={`text-[13px] font-bold ${skill.textColor}`}>{skill.icon}</span>
+          <div key={skill.category} className="rounded-[10px] border border-[var(--border)] bg-[var(--surface-2)] p-[15px] transition-colors duration-200 hover:border-[var(--border-2)]">
+            <div className="flex gap-3 items-start">
+              <div className={`flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[9px] mt-[1px] ${skill.bgColor}`}>
+                {skill.icon}
               </div>
-              <span className="text-base font-semibold text-[var(--heading-2)]">{skill.category}</span>
-            </div>
-            <div className="flex flex-wrap gap-[8px]">
-              {skill.items.map((item) => (
-                <span key={item} className={`rounded-[6px] border px-[12px] py-[4px] font-mono text-[13px] ${techBadge}`}>{item}</span>
-              ))}
+              <div className="flex-1 min-w-0">
+                <div className="mb-2 text-[12px] font-medium tracking-wide text-[var(--muted-2)]">{skill.category}</div>
+                <div className="flex flex-wrap gap-[6px]">
+                  {skill.items.map((item) => (
+                    <span key={item} className={`rounded-[6px] border px-[10px] py-1 font-mono text-[11px] ${techBadge}`}>{item}</span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         ))}
@@ -730,16 +765,16 @@ export function ContactSection({ isDark }: { isDark: boolean }) {
         <a
           key={contact.label}
           href={contact.href}
-          className={`mb-[9px] flex items-center justify-between rounded-[20px] border border-[var(--border)] bg-[var(--surface-2)] px-4 py-[14px] text-inherit no-underline transition-all duration-300 hover:border-[var(--border-2)] ${contactHover} active:opacity-80 last:mb-0`}
+          className={`mb-[9px] flex items-center justify-between rounded-[20px] border border-[var(--border)] bg-[var(--surface-2)] px-4 py-[14px] text-inherit no-underline transition-all duration-300 hover:border-[var(--border-2)] ${contactHover} active:opacity-80 group last:mb-0 max-sm:py-3 max-sm:px-3`}
           target={contact.external ? "_blank" : undefined}
           rel={contact.external ? "noreferrer" : undefined}
         >
           <div className="flex items-center gap-[9px] text-[13px] text-[var(--muted)] transition-colors duration-300">
             <contact.Icon className="h-[15px] w-[15px] text-[var(--contact-icon)]" aria-hidden="true" />
-            <span>{contact.label}</span>
+            <span className="max-sm:text-[12px]">{contact.label}</span>
           </div>
 
-          <span className="text-[13px] text-[var(--contact-value)] transition-colors duration-300">{contact.value}</span>
+          <span className="text-[13px] text-[var(--contact-value)] transition-colors duration-300 max-sm:text-[11px] max-sm:truncate max-sm:max-w-[120px]">{contact.value}</span>
 
           <ArrowChip className="text-[var(--contact-icon)]" />
         </a>
