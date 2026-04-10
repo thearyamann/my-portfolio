@@ -202,9 +202,25 @@ const lightScale = ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"];
 
 export function GitHubActivitySection({ isDark }: GitHubActivitySectionProps) {
   const [hydrated, setHydrated] = useState(false);
+  const [isMobileView, setIsMobileView] = useState(false);
 
   useEffect(() => {
     setHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 640px)");
+
+    const handleViewportChange = () => {
+      setIsMobileView(mediaQuery.matches);
+    };
+
+    handleViewportChange();
+    mediaQuery.addEventListener("change", handleViewportChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleViewportChange);
+    };
   }, []);
 
   const [days, setDays] = useState<ContributionDay[]>([]);
@@ -254,8 +270,12 @@ export function GitHubActivitySection({ isDark }: GitHubActivitySectionProps) {
   const weeks = useMemo(() => {
     if (days.length === 0) return [] as ContributionDay[][];
 
+    const mobileCutoffDate = "2025-11-01";
+    const desktopCutoffDate = "2025-08-01";
+    const startDate = isMobileView ? mobileCutoffDate : desktopCutoffDate;
+
     const orderedDays = [...days]
-      .filter((day) => day.date >= "2025-08-01")
+      .filter((day) => day.date >= startDate)
       .sort((a, b) => a.date.localeCompare(b.date));
 
     const lastContributingIndex = [...orderedDays].reverse().findIndex((day) => day.count > 0);
@@ -269,7 +289,7 @@ export function GitHubActivitySection({ isDark }: GitHubActivitySectionProps) {
     }
 
     return groupedWeeks;
-  }, [days]);
+  }, [days, isMobileView]);
 
   const filteredMonths = useMemo(() => {
     if (weeks.length === 0) return [];
