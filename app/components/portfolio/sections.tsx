@@ -270,10 +270,8 @@ export function GitHubActivitySection({ isDark }: GitHubActivitySectionProps) {
   const weeks = useMemo(() => {
     if (days.length === 0) return [] as ContributionDay[][];
 
-    const isInMobile2026Window = (date: string) => date >= "2026-01-01" && date <= "2026-04-30";
-
     const orderedDays = [...days]
-      .filter((day) => (isMobileView ? isInMobile2026Window(day.date) : day.date >= "2025-08-01"))
+      .filter((day) => (isMobileView ? day.date >= "2026-01-01" : day.date >= "2025-08-01"))
       .sort((a, b) => a.date.localeCompare(b.date));
 
     const lastContributingIndex = [...orderedDays].reverse().findIndex((day) => day.count > 0);
