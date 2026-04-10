@@ -138,7 +138,8 @@ export function HeroSection({ isDark }: { isDark: boolean }) {
 
           <div className="flex flex-wrap gap-[9px]">
             <a
-              href="#"
+              href="/Aryamann_Resume.pdf"
+              download="Aryamann_Resume.pdf"
               className={`inline-flex items-center gap-[7px] rounded-[20px] border border-[var(--border-2)] bg-[var(--surface-2)] px-[18px] py-[9px] text-[13px] text-[var(--btn-text)] transition-all duration-300 hover:border-[var(--border-hover)] ${btnHover} active:opacity-80`}
             >
               <DownloadIcon className="h-[15px] w-[15px] text-[var(--icon-soft)]" />
@@ -404,12 +405,8 @@ export function ProjectsSection({ isDark }: { isDark: boolean }) {
           <div className="flex items-start justify-between gap-3 flex-wrap">
             <div className="flex-1 min-w-0">
               <div className="mb-[6px] flex flex-wrap items-center gap-2">
-                <div className={`flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[10px] ${iconBg}`}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b8df6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="3" width="20" height="14" rx="2"/>
-                    <line x1="8" y1="21" x2="16" y2="21"/>
-                    <line x1="12" y1="17" x2="12" y2="21"/>
-                  </svg>
+                <div className={`flex h-[38px] w-[38px] shrink-0 items-center justify-center overflow-hidden rounded-[10px] border border-[#d1d5db] ${iconBg}`}>
+                  <img src="/advance_logo.png" alt="Advance Control System logo" className="h-full w-full rounded-[8px] object-cover" />
                 </div>
                 <span className="text-sm font-semibold text-[var(--heading-2)] max-sm:text-[13px]">Advance Control System — Industrial B2B Web Platform</span>
                 <span className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${badgeBg}`}>Freelance</span>
@@ -420,7 +417,12 @@ export function ProjectsSection({ isDark }: { isDark: boolean }) {
                   ))}
                 </div>
             </div>
-            <a href="#" className={`flex shrink-0 items-center gap-[5px] rounded-[7px] border px-[11px] py-[5px] text-[12px] font-medium text-[#5b8df6] transition-colors duration-200 ${liveBtn}`}>
+            <a
+              href="https://advancecontrolsystemservices.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`flex shrink-0 items-center gap-[5px] rounded-[7px] border px-[11px] py-[5px] text-[12px] font-medium text-[#5b8df6] transition-colors duration-200 ${liveBtn}`}
+            >
               LIVE
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#5b8df6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
             </a>
@@ -443,16 +445,8 @@ export function ProjectsSection({ isDark }: { isDark: boolean }) {
           <div className="flex items-start justify-between gap-3 flex-wrap">
             <div className="flex-1 min-w-0">
               <div className="mb-[6px] flex flex-wrap items-center gap-2">
-                <div className={`flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[10px] ${iconBg2}`}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e8a23a" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="5"/>
-                    <line x1="12" y1="1" x2="12" y2="3"/>
-                    <line x1="12" y1="21" x2="12" y2="23"/>
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                    <line x1="1" y1="12" x2="3" y2="12"/>
-                    <line x1="21" y1="12" x2="23" y2="12"/>
-                  </svg>
+                <div className={`flex h-[38px] w-[38px] shrink-0 items-center justify-center overflow-hidden rounded-[10px] ${iconBg2}`}>
+                  <img src="/UVguard_logo.svg" alt="UVGuard logo" className="h-full w-full object-cover" />
                 </div>
                 <span className="text-sm font-semibold text-[var(--heading-2)] max-sm:text-[13px]">UVGuard — UV Index &amp; Skincare Tracking Mobile App</span>
               </div>
@@ -462,7 +456,12 @@ export function ProjectsSection({ isDark }: { isDark: boolean }) {
                   ))}
                 </div>
             </div>
-            <a href="#" className={`flex shrink-0 items-center gap-[5px] rounded-[7px] border px-[11px] py-[5px] text-[12px] font-medium text-[#5b8df6] transition-colors duration-200 ${liveBtn}`}>
+            <a
+              href="https://github.com/thearyamann/UVGuard/releases/tag/v1.0.0"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`flex shrink-0 items-center gap-[5px] rounded-[7px] border px-[11px] py-[5px] text-[12px] font-medium text-[#5b8df6] transition-colors duration-200 ${liveBtn}`}
+            >
               LIVE
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#5b8df6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
             </a>
@@ -485,12 +484,8 @@ export function ProjectsSection({ isDark }: { isDark: boolean }) {
           <div className="flex items-start justify-between gap-3 flex-wrap">
             <div className="flex-1 min-w-0">
               <div className="mb-[6px] flex flex-wrap items-center gap-2">
-                <div className={`flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[10px] ${iconBg3}`}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3bba75" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10"/>
-                    <line x1="2" y1="12" x2="22" y2="12"/>
-                    <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
-                  </svg>
+                <div className={`flex h-[38px] w-[38px] shrink-0 items-center justify-center overflow-hidden rounded-[10px] ${iconBg3}`}>
+                  <img src="/guido_logo.svg" alt="GUIDO logo" className="h-full w-full object-cover" />
                 </div>
                 <span className="text-sm font-semibold text-[var(--heading-2)] max-sm:text-[13px]">GUIDO — Travel Platform</span>
                 <span className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${badgeBg2}`}>UP Government Granted</span>
@@ -519,13 +514,11 @@ export function ProjectsSection({ isDark }: { isDark: boolean }) {
           <div className="flex items-start justify-between gap-3 flex-wrap">
             <div className="flex-1 min-w-0">
               <div className="mb-[6px] flex flex-wrap items-center gap-2">
-                <div className={`flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[10px] ${iconBg4}`}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9b72f8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                  </svg>
+                <div className={`flex h-[38px] w-[38px] shrink-0 items-center justify-center overflow-hidden rounded-[10px] ${iconBg4}`}>
+                  <img src="/vesly_logo.png" alt="Vesly logo" className="h-full w-full object-cover" />
                 </div>
                 <span className="text-sm font-semibold text-[var(--heading-2)] max-sm:text-[13px]">Vesly — Smart Hydration System</span>
-                <span className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${badgeBg3}`}>SIH 2023 National Finalist</span>
+                <span className={`rounded-[5px] border px-[9px] py-1 font-mono text-[11px] ${badgeBg3}`}>SIH 2023 National Winner</span>
               </div>
               <div className="mb-3 flex flex-wrap gap-[6px]">
                   {["Flutter", "IoT", "UV-C Purification", "Sensor Integration", "Mobile Analytics"].map((tech) => (
@@ -533,7 +526,12 @@ export function ProjectsSection({ isDark }: { isDark: boolean }) {
                   ))}
                 </div>
             </div>
-            <a href="#" className={`flex shrink-0 items-center gap-[5px] rounded-[7px] border px-[11px] py-[5px] text-[12px] font-medium text-[#5b8df6] transition-colors duration-200 ${liveBtn}`}>
+            <a
+              href="https://drive.google.com/file/u/0/d/1F3kCsI3h-Fm8Cnva3jjI4Ga9BoXewPEF/view?usp=sharing&pli=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`flex shrink-0 items-center gap-[5px] rounded-[7px] border px-[11px] py-[5px] text-[12px] font-medium text-[#5b8df6] transition-colors duration-200 ${liveBtn}`}
+            >
               LIVE
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#5b8df6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
             </a>
@@ -543,7 +541,7 @@ export function ProjectsSection({ isDark }: { isDark: boolean }) {
           {[
             "Developed an IoT-based smart water bottle with UV-C purification and real-time hydration tracking sensors, transmitting usage telemetry to a mobile application via a hardware-software interface layer.",
             "Built the companion Flutter mobile app featuring a hydration analytics dashboard, personalised reminder scheduling, and user health insights.",
-            "Selected as a national finalist at Smart India Hackathon 2023 — ranked among the top teams from over 50,000+ submissions across 44,000 teams nationwide."
+            "Selected as a national winner at Smart India Hackathon 2023 — ranked among the top teams from over 50,000+ submissions across 44,000 teams nationwide."
           ].map((text, i) => (
             <li key={i} className={`relative pl-4 text-[13px] leading-[1.7] ${bulletLi} before:absolute before:left-0 before:top-[9px] before:h-[5px] before:w-[5px] before:rounded-full ${bulletDot}`}><span className="text-[var(--heading-2)] font-medium">{text.split("—")[0].trim()}</span>{text.includes("—") ? "—" + text.split("—")[1] : ""}</li>
           ))}
